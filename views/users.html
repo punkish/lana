@@ -1,0 +1,23 @@
+<section class="row">
+    <h2>Users</h2>
+
+    {{#add}}
+    <h3>Add a new user</h3>
+    <form id="form" method="POST" action="/users">
+        <label for="name">name</label>
+        <input id="name" name="name" type="text">
+        <label for="password">password</label>
+        <input id="password" name="password" type="password"><br>
+        <input id="submit" type="submit" value="submit">
+    </form>
+    {{/add}}
+
+    {{^add}}
+    <ol id="users">
+        {{#data}}
+        <li>{{name}}</li>
+        {{/data}}
+    </ol>
+    <a href="/users?action=add">add user</a>
+    {{/add}}
+</section>

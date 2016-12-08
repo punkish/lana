@@ -1,0 +1,20 @@
+<section class="row">
+    <h2>readings</h2>
+
+    <table id="readings">
+        <thead>
+            <tr>
+                <th>time</th><th>humidity</th><th>temperature</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#data}}
+            <tr>
+                <td><a href="/readings?id={{id}}">{{doc.timestamp}}</a></td>
+                <td>{{doc.humidity}}</td>
+                <td>{{doc.temperature}}</td>
+            </tr>
+            {{/data}}
+        </tbody>
+    </table>
+</section>
