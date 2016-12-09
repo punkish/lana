@@ -1,12 +1,11 @@
 const path = require('path');
-const dir = path.join(__dirname, '..', '..', 'data', 'readings');
+const dir = path.join(__dirname, 'data', 'readings');
 const dbfile = path.join(dir, 'readings.db');
+
 const Datastore = require('nedb');
-//var PouchDB = require('pouchdb');
-//var db = new PouchDB(dbfile);
 const db = new Datastore({
      filename: dbfile,
-     timestampData: true
+     autoload: true
 });
 
 const readings = {
@@ -17,27 +16,18 @@ const readings = {
         if (request.method === 'get') {
             const action = request.query.action;
             const id = request.query.id || 'all';
-            console.log(`id: ${id}`);
-
+            
             if (id === 'all') {
-                // db.allDocs({include_docs: true}, function (err, result) {
-                //     reply.view(
-                //         'readings',
-                //         {data: result.rows},
-                //         { layout : 'main' }
-                //     );
-                // });
                 db.find({}, function (err, docs) {
-                  if (err) {
-                    console.log(err);
-                  }
-                  console.log('found all documents');
-                  console.log(docs);
-                  // reply.view(
-                  //     'readings',
-                  //     { data: docs },
-                  //     { layout : 'main' }
-                  // );
+                    if (err) {
+                        console.log(err);
+                    }
+                    
+                    reply.view(
+                        'readings',
+                        { data: docs },
+                        { layout : 'main' }
+                    );
                 });
             }
             else {

@@ -9,7 +9,7 @@ const inert = require('./resources/inert.js');
 const static_pages = require('./resources/static-pages.js');
 //const lessons = require('./resources/lessons.js');
 //const users = require('./resources/users.js');
-const readings = require('./resources/readings.js');
+const budget = require('./resources/budget.js');
 
 const server = new Hapi.Server();
 server.connection({ port: 3000 });
@@ -23,7 +23,7 @@ server.register(require('inert'), (err) => {
 server.route([
     inert,
     //users,
-    readings,
+    budget,
     static_pages
 ]);
 
