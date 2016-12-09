@@ -7,7 +7,7 @@ const Mustache = require('mustache');
 
 const inert = require('./resources/inert.js');
 const static_pages = require('./resources/static-pages.js');
-const lessons = require('./resources/lessons.js');
+//const lessons = require('./resources/lessons.js');
 //const users = require('./resources/users.js');
 const readings = require('./resources/readings.js');
 
@@ -21,11 +21,10 @@ server.register(require('inert'), (err) => {
 });
 
 server.route([
-    inert, 
-    //users, 
+    inert,
+    //users,
     readings,
-    static_pages, 
-    lessons
+    static_pages
 ]);
 
 server.register({
@@ -42,17 +41,17 @@ server.register({
                             log: '*'
                         }
                     ]
-                }, 
+                },
                 {
                     module: 'good-console'
-                }, 
+                },
                 'stdout'
             ]
         }
     }
 }, (err) => {
     if (err) {
-        throw err; 
+        throw err;
     }
 });
 
@@ -71,7 +70,7 @@ server.register(Vision, (err) => {
 
                     return function (context) {
                         return Mustache.render(
-                            template, 
+                            template,
                             context,
                             partials
                         );
@@ -92,7 +91,7 @@ server.register(Vision, (err) => {
 });
 
 server.register(
-    [require('vision'), require('inert'), { register: require('lout') }], 
+    [require('vision'), require('inert'), { register: require('lout') }],
     (err) => {}
 );
 

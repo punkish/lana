@@ -34,6 +34,7 @@
     "mustache": "^2.2.1",
     "nedb": "^1.8.0",
     "showdown": "^1.4.0",
-    "vision": "^4.1.0"
+    "vision": "^4.1.0",
+    "yaml-front-matter": "3.4.0"
   }
 }
