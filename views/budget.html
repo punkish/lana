@@ -4,16 +4,21 @@
     <table id="budget">
         <thead>
             <tr>
-                <th>program</th><th>personnel</th><th>operations</th><th>investments</th>
+                <th>program</th>
+                <th>personnel</th>
+                <th>operations</th>
+                <th>investments</th>
+                <th>total</th>
             </tr>
         </thead>
         <tbody>
             {{#data}}
             <tr>
-                <td><a href="/readings?id={{id}}">{{program}}</a></td>
-                <td>{{personnel}}</td>
-                <td>{{operations}}</td>
-                <td>{{investment}}</td>
+                <td>{{Programi & Njesite shpenzuese}}</td>
+                <td>{{Shpenzime personeli}}</td>
+                <td>{{Shpenzime operative}}</td>
+                <td>{{Shpenzime per Investime}}</td>
+                <td>{{Totali buxhetit}}</td>
             </tr>
             {{/data}}
         </tbody>

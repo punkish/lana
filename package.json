@@ -33,6 +33,7 @@
     "minimist": "^1.2.0",
     "mustache": "^2.2.1",
     "nedb": "^1.8.0",
+    "node-csv-json": "^0.2.1",
     "showdown": "^1.4.0",
     "vision": "^4.1.0",
     "yaml-front-matter": "3.4.0"
