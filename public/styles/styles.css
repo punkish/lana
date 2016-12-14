@@ -3,13 +3,18 @@ a {
 }
 
 nav a {
-	margin-right: 2rem;
-	text-decoration: none;
+	margin-left: 4em;
+	text-decoration: underline;
 	color: black;
+	text-decoration-style: double;
+	font-size: 27px;
+	-webkit-text-fill-color: #8042f4;
+	font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 section {
-	margin-top: 2em;
+	margin-top: 5em;
+	margin-right: 5em;
 }
 
 footer {
@@ -50,3 +55,33 @@ footer {
 	content: "";
 	display: table;
 }
+
+
+tr:nth-child(even) {background: #CCC}
+tr:nth-child(odd) {background: #FFF}
+
+th {color: red;}
+
+td{color:#8042f4;}
+
+var data = {
+    labels: [
+        "Red",
+        "Blue",
+        "Yellow"
+    ],
+    datasets: [
+        {
+            data: [300, 50, 100],
+            backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56"
+            ],
+            hoverBackgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56"
+            ]
+        }]
+};
