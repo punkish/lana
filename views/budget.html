@@ -1,66 +1,116 @@
 <section class="row">
     <h2>budget</h2>
-    <canvas id="myChart" width="400" height="200"></canvas>
-
-    <script>
-var ctx = document.getElementById("myChart");
-var myChart = new Chart(ctx, {
-    type: 'pie',
-    data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [{
-            label: '# of Votes',
-            data: [3, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(0,0,0, 1)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
-    }
-});
-</script>  
     <table id="budget">
-        <thead>
-            <tr>
-                <th>Program</th>
-                <th>Personnel</th>
-                <th>Operations</th>
-                <th>Investments</th>
-                <th>Total</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#data}}
-            <tr id="values">
-                <td>{{Programi & Njesite shpenzuese}}</td>
-                <td>{{Shpenzime personeli}}</td>
-                <td>{{Shpenzime operative}}</td>
-                <td>{{Shpenzime per Investime}}</td>
-                <td>{{Totali buxhetit}}</td>
-            </tr>
-            {{/data}}
-        </tbody>
+        <thead id="tableHeader"></thead>
+        <tbody id="tableBody"></tbody>
     </table>
+
+    <canvas id="myChart" width="400" height="200"></canvas>
 </section>
+
+<script>
+  const data = {{{ data }}};
+  const aBudget = {{aBudget}};
+
+  var thead = document.getElementById("tableHeader");
+  var tbody = document.getElementById("tableBody");
+  var tableHeaderHtml = '';
+  var tableBodyHtml = '';
+
+  var i = 0;
+  const j = data.length;
+
+  var labels = [];
+
+  const loadData = function(data) {
+    if (aBudget) {
+
+      // display the details of a specific budget
+      for(; i < j; i++) {
+        const row = data[i];
+        if (i === 0) {
+
+          // this is the first row of the table so
+          // we will create a header
+          tableHeaderHtml += '<tr>';
+          for(var key in row) {
+            labels.push(key);
+            tableHeaderHtml += `<th>${ key }</th>`;
+          }
+          tableHeaderHtml += '</tr>';
+
+          // but we also have to create a row with the
+          // values in row 0
+          tableBodyHtml += '<tr>';
+          for(var key in row) {
+            tableBodyHtml += `<td>${ row[key] }</td>`;
+          }
+          tableBodyHtml += '</tr>';
+        }
+        else {
+
+          // we will create all the rows of the table
+          tableBodyHtml += '<tr>';
+          for(var key in row) {
+            tableBodyHtml += `<td>${ row[key] }</td>`;
+          }
+          tableBodyHtml += '</tr>';
+        }
+      }
+
+      // lets make a chart
+      var ctx = document.getElementById("myChart");
+      var myChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+              labels: labels,
+              datasets: [{
+                  label: '# of Votes',
+                  data: [12, 19, 3, 5, 2, 3],
+                  backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(255, 206, 86, 0.2)',
+                      'rgba(75, 192, 192, 0.2)',
+                      'rgba(153, 102, 255, 0.2)',
+                      'rgba(255, 159, 64, 0.2)'
+                  ],
+                  borderColor: [
+                      'rgba(255,99,132,1)',
+                      'rgba(54, 162, 235, 1)',
+                      'rgba(255, 206, 86, 1)',
+                      'rgba(75, 192, 192, 1)',
+                      'rgba(153, 102, 255, 1)',
+                      'rgba(255, 159, 64, 1)'
+                  ],
+                  borderWidth: 1
+              }]
+          },
+          options: {
+              scales: {
+                  yAxes: [{
+                      ticks: {
+                          beginAtZero:true
+                      }
+                  }]
+              }
+          }
+      });
+    }
+    else {
+
+      // display all the budgets
+      tableHeaderHtml += '<tr><td>name</td></tr>';
+
+      for(; i < j; i++) {
+        var disp_name = data[i].replace(/_/g, ' ');
+        tableBodyHtml += `<tr><td><a href='/budget?name=${ data[i] }'>${ disp_name }</a></td></tr>`;
+      }
+    }
+
+    thead.innerHTML = tableHeaderHtml;
+    tbody.innerHTML = tableBodyHtml;
+  };
+
+  loadData(data);
+</script>

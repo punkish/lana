@@ -1,6 +1,7 @@
 const node_cj = require("node-csv-json");
 const path = require('path');
-const budget_file = path.join(__dirname, '..', 'data/buxheti/buxheti.csv');
+const fs = require('fs');
+const dir = path.join(__dirname, '..', 'data','buxheti');
 
 const budget = {
     method: 'GET',
@@ -8,27 +9,51 @@ const budget = {
     path: '/budget',
 
     handler : function (request, reply) {
+      if (request.query.name) {
 
-      const node_cj = require("node-csv-json");
+        // send back the specific budget called name
 
-      node_cj(
+        node_cj(
+            {
+                input: path.join(dir, request.query.name + '.csv'),
+                output: null
+            },
+            function(err, result){
+                if(err) {
+                    console.error(err);
+                }
+                else {
+                  reply.view(
+                      'budget',
+                      {
+                        data: JSON.stringify(result),
+                        aBudget: true
+                      },
+                      { layout : 'main' }
+                  );
+                }
+          }
+        );
+      }
+      else {
+
+        // send back a list of all available budgets
+        const budget_files = fs.readdirSync(dir);
+        const budgets = budget_files.map(function(elem){
+          return elem.replace(/\.csv$/, '');
+        });
+
+        reply.view(
+          'budget',
           {
-              input: budget_file,
-              output: null
+            data : JSON.stringify(budgets),
+            aBudget: false
           },
-          function(err, result){
-              if(err) {
-                  console.error(err);
-              }
-              else {
-                reply.view(
-                    'budget',
-                    { data : result },
-                    { layout : 'main' }
-                );
-              }
-        }
-      );
+          { layout : 'main' }
+        );
+      }
+
+
 
 
 
