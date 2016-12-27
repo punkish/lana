@@ -10,7 +10,7 @@ const static_pages = require('./resources/static-pages.js');
 const budgets = require('./resources/budgets.js');
 
 const server = new Hapi.Server();
-server.connection({ port: 3000 });
+server.connection({ port: 8080 });
 
 server.register(require('inert'), (err) => {
     if (err) {
