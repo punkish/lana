@@ -1,3 +1,10 @@
+---
+resource_id: terms-of-use
+tags: TOU
+---
+
+## Terms of Use
+
 Be nice. And make sure to read other stuff our lawyers<sup>1</sup> make us say:
 
 - <a href="/terms-of-service" class="view">Terms of Service</a>

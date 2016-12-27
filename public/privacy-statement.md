@@ -1,3 +1,10 @@
+---
+resource_id: privacy-statement
+tags: welcome, home
+---
+
+## Privacy Statement
+
 We don't collect any identifiable information from you. Also, make sure to read other stuff our lawyers<sup>1</sup> make us say:
 
 - <a href="/terms-of-service" class="view">Terms of Service</a>

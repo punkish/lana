@@ -1,3 +1,10 @@
+---
+resource_id: legalese
+tags: legal stuff
+---
+
+## Legalese
+
 Please check out what our lawyers<sup>1</sup> make us say.
 
 - <a href="/terms-of-service" class="view">Terms of Service</a>
