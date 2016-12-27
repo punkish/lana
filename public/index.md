@@ -3,4 +3,4 @@ bee_id: Benetta
 tags: welcome, home
 ---
 
-Welcome.
+Welcome to the website with budget data for Bashkia Tirana.

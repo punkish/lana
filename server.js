@@ -7,9 +7,7 @@ const Mustache = require('mustache');
 
 const inert = require('./resources/inert.js');
 const static_pages = require('./resources/static-pages.js');
-//const lessons = require('./resources/lessons.js');
-//const users = require('./resources/users.js');
-const budget = require('./resources/budget.js');
+const budgets = require('./resources/budgets.js');
 
 const server = new Hapi.Server();
 server.connection({ port: 3000 });
@@ -22,8 +20,7 @@ server.register(require('inert'), (err) => {
 
 server.route([
     inert,
-    //users,
-    budget,
+    budgets,
     static_pages
 ]);
 

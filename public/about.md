@@ -1,3 +1,5 @@
-This is a meta-MOOC, a gently curated catalog of free learning resources on the web focused primarily on spatial information and related topics, concepts and tasks. We call this a meta-MOOC because it lists other meaningful open online content. You may check out the <a href="/lessons" class="view">lessons</a> we have collected.
+This is lana. Please read the <a href="/legalese">legalese</a> our lawyers<sup>1</sup> make us say.
 
-**Note:** <a href="/lessons?lightweight=true" class="view">Load lessons without images</a> for faster experience.
+<ol id="footnotes">
+<li>We don't really have a lawyer. We are just poor students. Besides, we believe in being nice, not in using lawyers.</li>
+</ol> 
